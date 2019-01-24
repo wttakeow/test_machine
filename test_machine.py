@@ -2,14 +2,14 @@ def buy(inputs):
     import serial
     import time
     from usb.core import find as finddev
+    dev = finddev(idVendor=0x1a86, idProduct=0x7523)
+    dev.reset()
+    time.sleep(4)
     ser = serial.Serial(
         port='/dev/ttyUSB0',
         baudrate =19200,
         timeout=5
     )
-    dev = finddev(idVendor=0x1a86, idProduct=0x7523)
-    dev.reset()
-    time.sleep(4)
     print ("Port "+ ser.portstr + "opened:" + str(ser.isOpen()))
 
     ###print(inputs)
@@ -26,11 +26,12 @@ def buy(inputs):
         "9": [0xFA,0xF0,0xE1,0x02,0x09,0xDC],
         "10": [0xFA,0xF0,0xE1,0x02,0x00,0xD3]
     }
+
     x = bytearray(tray_list[str(inputs)])
     ser.flushInput()
     ser.flushOutput()
     ser.write(x)
-    time.sleep(6)
+    time.sleep(5)
     dev = finddev(idVendor=0x1a86, idProduct=0x7523)
     dev.reset()
     time.sleep(2)
