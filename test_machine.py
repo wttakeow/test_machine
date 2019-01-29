@@ -33,8 +33,6 @@ def buy(inputs):
     ser.flushOutput()
     ser.write(x)
     time.sleep(5)
-    ser.flushInput()
-    ser.flushOutput()
     ser.close()
     time.sleep(1)
     dev.reset()
