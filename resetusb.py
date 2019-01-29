@@ -34,7 +34,7 @@ def reset_USB_Device():
 	# /dev/bus/usb//
 	proc = subprocess.Popen(['lsusb'], stdout=subprocess.PIPE)
 	cmd_output = proc.communicate()[0]
-	usb_device_list = cmd_output.split('\n')
+	usb_device_list = (cmd_output.split('\n')).encode()
 	for device in usb_device_list:
 		if USB_DEV_NAME in device:
 			print (device)
