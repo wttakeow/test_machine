@@ -2,9 +2,6 @@ from resetusb import reset_USB_Device
 def buy(inputs):
     import serial
     import time
-    from usb.core import find as finddev
-    dev = finddev(idVendor=0x1a86, idProduct=0x7523)
-    dev.reset()
     time.sleep(4)
     ser = serial.Serial(
         port='/dev/ttyUSB0',
