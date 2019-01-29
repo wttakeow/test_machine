@@ -1,3 +1,4 @@
+from resetusb import reset_USB_Device
 def buy(inputs):
     import serial
     import time
@@ -32,7 +33,9 @@ def buy(inputs):
     ser.flushOutput()
     ser.write(x)
     time.sleep(5)
-    dev = finddev(idVendor=0x1a86, idProduct=0x7523)
-    dev.reset()
+    ser.flushInput()
+    ser.flushOutput()
+    time.sleep(1)
+    reset_USB_Device()
     time.sleep(2)
     print("pass")
